@@ -1,0 +1,98 @@
+# Capistrano Precompile Chooser
+
+<a href="https://badge.fury.io/rb/capistrano-precompile-chooser" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/capistrano-precompile-chooser.svg" alt="Gem Version"></a>
+<a href='https://travis-ci.org/westonganger/capistrano-precompile-chooser' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://travis-ci.org/westonganger/capistrano-precompile-chooser.svg?branch=master' border='0' alt='Build Status'></a>
+<a href='https://rubygems.org/gems/capistrano-precompile-chooser' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/capistrano-precompile-chooser?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
+<a href='https://ko-fi.com/A5071NK' target='_blank'><img height='22' style='border:0px;height:22px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=a' border='0' alt='Buy Me a Coffee'></a>
+
+Capistrano plugin to precompile your Rails assets locally, remotely, or not at all provided with a very convenient default terminal prompt.
+
+By Default, on every deploy this plugin will prompt you on whether you want to precompile your assets locally, remotely, or not at all. Alternatively you can set some variable for fully automated deploys.
+
+```
+$ cap production deploy
+
+How do you want to compile assets? (local/remote/skip)
+skip
+```
+
+## Precompile Modes
+
+- `local` - Local Precompilation Mode (Improves Memory/Load Spikes on Server during Deploys)
+- `remote` - Remote Precompilation Mode (Rails Default)
+- `skip` - No Precompilation (Speeds up deployments with unchanged assets)
+
+## Installation
+
+```ruby
+# Gemfile
+
+group :development do
+  gem "capistrano-precompile-chooser"
+end
+```
+
+```ruby
+# Capfile
+
+# require 'capistrano/rails' ### Comment Out or Remove this line
+require 'capistrano/precompile_chooser'
+```
+
+If you want to be able to safely use the `skip` option you must add `public/assets` to your capistrano `:shared_dirs` variable
+
+```ruby
+# config/deploy.rb
+
+set :linked_dirs, %w{ <other-dirs> public/assets }
+```
+
+## Usage
+
+Now when running a deployment:
+
+```
+$ cap production deploy
+
+How do you want to compile assets? (local/remote/skip)
+skip
+```
+
+You can also use the `$PRECOMPILE` environment variable
+
+```bash
+$ PRECOMPILE_MODE="local" cap production deploy
+```
+
+You can also set the capistrano `:precompile` variable for fully automated deploys
+
+```ruby
+# config/deploy.rb
+
+set :precompile_mode, "local"
+```
+
+## Configuration Options, 
+```ruby
+set :assets_dir,   "public/assets"
+set :packs_dir,    "public/packs"
+set :rsync_cmd,    "rsync -av --delete"
+set :assets_role,  "web"
+```
+
+## Task Ordering, and Task Details
+
+<a href="https://github.com/westonganger/capistrano-precompile-chooser/blob/master/lib/capistrano/precompile_chooser.rb">See Source</a>
+
+# TODO
+
+- Add Tests
+- Optional Precompilation Based on Diff - **PR WANTED**
+
+# Credits
+
+Created & Maintained by [Weston Ganger](https://westonganger.com) - [@westonganger](https://github.com/westonganger)
+
+For any consulting or contract work please contact me via my company website: [Solid Foundation Web Development](https://solidfoundationwebdev.com)
+
+[![Solid Foundation Web Development Logo](https://solidfoundationwebdev.com/logo-sm.png)](https://solidfoundationwebdev.com)
