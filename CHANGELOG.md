@@ -2,7 +2,10 @@ CHANGELOG
 ---------
 
 - Unreleased
-  - Refractor into a `Capistrano::Plugin`
+  * Nothing yet
 
 - **0.9.0** - August 19, 2020
-  - Gem Initial Release
+  * Refractor plugin into `Capistrano::Plugin` format
+
+- **0.9.0** - August 19, 2020
+  * Gem Initial Release

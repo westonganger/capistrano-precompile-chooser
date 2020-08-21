@@ -9,7 +9,6 @@ task test: :spec
 task default: :spec
 
 task :console do
-  require 'capistrano'
   require 'capistrano/precompile_chooser'
 
   require 'irb'
