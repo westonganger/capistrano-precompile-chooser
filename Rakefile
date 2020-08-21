@@ -6,6 +6,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 task test: :spec
 
+task default: :spec
+
 task :console do
   require 'capistrano'
   require 'capistrano/precompile_chooser'

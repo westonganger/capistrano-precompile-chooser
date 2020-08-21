@@ -1,5 +1,7 @@
+require "capistrano/plugin"
+
 module Capistrano
-  module PrecompileChooser
+  class PrecompileChooser < Capistrano::Plugin
     VERSION = "0.9.0"
   end
 end

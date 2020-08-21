@@ -64,30 +64,24 @@ You can also use the `$PRECOMPILE` environment variable
 $ PRECOMPILE_MODE="local" cap production deploy
 ```
 
-You can also set the capistrano `:precompile` variable for fully automated deploys
+Or for fully automated deploys
 
 ```ruby
-# config/deploy.rb
+# Capfile
 
-set :precompile_mode, "local"
+ENV['PRECOMPILE_MODE'] = 'local'
+require 'capistrano/precompile_chooser'
 ```
 
 ## Configuration Options, 
+
 ```ruby
+### For Local Precompile Only
 set :assets_dir,   "public/assets"
 set :packs_dir,    "public/packs"
 set :rsync_cmd,    "rsync -av --delete"
 set :assets_role,  "web"
 ```
-
-## Task Ordering, and Task Details
-
-<a href="https://github.com/westonganger/capistrano-precompile-chooser/blob/master/lib/capistrano/precompile_chooser.rb">See Source</a>
-
-# TODO
-
-- Add Tests
-- Optional Precompilation Based on Diff - **PR WANTED**
 
 # Credits
 
