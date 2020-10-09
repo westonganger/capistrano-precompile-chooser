@@ -40,17 +40,17 @@ module Capistrano
 
     def precompile_mode
       @precompile_mode ||= begin
-        if ENV['PRECOMPILE_MODE']
-          if !valid_mode?(ENV['PRECOMPILE_MODE'])
-            raise "Invalid Precompile Mode"
+        val = ENV['PRECOMPILE_MODE']
+
+        if val
+          if !valid_mode?(val)
+            raise "Invalid Precompile Mode: '#{val}' set by ENV['PRECOMPILE_MODE']"
           end
         else
-          val = nil
-
           until valid_mode?(val)
-            puts
             puts "How do you want to compile assets? (#{PRECOMPILE_MODES.join('/')})"
             val = STDIN.gets.strip.downcase
+            puts
           end
 
           puts
