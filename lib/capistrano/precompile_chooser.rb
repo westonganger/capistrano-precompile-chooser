@@ -40,6 +40,7 @@ module Capistrano
 
     def precompile_mode
       @precompile_mode ||= begin
+        val = ENV['PRECOMPILE_MODE']
         if ENV['PRECOMPILE_MODE']
           if !valid_mode?(ENV['PRECOMPILE_MODE'])
             raise "Invalid Precompile Mode"
