@@ -2,7 +2,7 @@ CHANGELOG
 ---------
 
 - Unreleased
-  * Nothing Yet
+  * Replace all usages of `Dir.exists?` with `Dir.exist?` for Ruby 3.2+ compatibility
 
 - **0.9.2** - October 9, 2020
   * Fix where ENV['PRECOMPILE_MODE'] was not working
