@@ -8,6 +8,8 @@ Capistrano plugin to precompile your Rails assets locally, remotely, or not at a
 
 By Default, on every deploy this plugin will prompt you on whether you want to precompile your assets locally, remotely, or not at all. Alternatively you can set some variable for fully automated deploys.
 
+Works with both Sprockets and Propshaft.
+
 ```
 $ cap production deploy
 
